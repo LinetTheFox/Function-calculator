@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" prefHeight="520.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.visual.Controller">
+    <rowConstraints>
+        <RowConstraints minHeight="10.0" prefHeight="20.0" />
+        <RowConstraints minHeight="10.0" prefHeight="500.0" />
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints minWidth="10.0" prefWidth="600.0" />
+    </columnConstraints>
+    <children>
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="View">
+                            <items>
+                                <MenuItem fx:id="RowMenuItem" onAction="#handleTableHeight" text="Row height" />
+                                <MenuItem fx:id="FontSize" mnemonicParsing="false" onAction="#handleTableFont" text="Font Size" />
+                            </items></Menu>
+                        <Menu mnemonicParsing="false" text="About">
+                            <items>
+                                <MenuItem fx:id="AboutMenuItem" mnemonicParsing="false" onAction="#handleAbout" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            </children>
+        </GridPane>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
+            <tabs>
+                <Tab text="Data entering">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label layoutX="74.0" layoutY="42.0" text="Interval data entering">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="106.0" layoutY="136.0" text="Enter the start value a:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="109.0" layoutY="190.0" text="Enter the end value b:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="107.0" layoutY="244.0" text="Enter the step value s:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="109.0" layoutY="301.0" text="Enter positive value P:">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="startField" alignment="CENTER" layoutX="336.0" layoutY="137.0" />
+                                <TextField fx:id="endField" alignment="CENTER" layoutX="336.0" layoutY="191.0" />
+                                <TextField fx:id="stepField" alignment="CENTER" layoutX="336.0" layoutY="245.0" />
+                                <TextField fx:id="paramField" alignment="CENTER" layoutX="336.0" layoutY="302.0" />
+                        <Button layoutX="260.0" layoutY="383.0" mnemonicParsing="false" onAction="#handleCalculate" prefHeight="33.0" prefWidth="80.0" text="Calculate" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Interval Data Table">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView fx:id="mainTable" layoutX="38.0" layoutY="57.0" prefHeight="400.0" prefWidth="300.0">
+                                    <columns>
+                                        <TableColumn editable="false" prefWidth="150.0" sortable="false" text="X" fx:id="xVal" />
+                                        <TableColumn fx:id="yVal" editable="false" prefWidth="150.0" sortable="false" text="Y" />
+                                    </columns>
+                                </TableView>
+                                <Label layoutX="81.0" layoutY="14.0" text="Table of function values in [a; b] interval">
+                                    <font>
+                                        <Font size="25.0" />
+                                    </font>
+                                </Label>
+                                <TextField fx:id="maxField" alignment="CENTER" editable="false" layoutX="389.0" layoutY="131.0">
+                                    <opaqueInsets>
+                                        <Insets />
+                                    </opaqueInsets></TextField>
+                                <TextField fx:id="minField" alignment="CENTER" editable="false" layoutX="389.0" layoutY="313.0" />
+                                <Label layoutX="397.0" layoutY="114.0" text="Maximal function value:" />
+                                <Label layoutX="398.0" layoutY="296.0" text="Minimal function value:" />
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="PlotTab" text="Interval Plot">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <LineChart fx:id="plotChart" layoutX="24.0" layoutY="32.0" prefHeight="351.0" prefWidth="550.0">
+                                    <xAxis>
+                                        <CategoryAxis side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis side="LEFT" upperBound="100000.0" />
+                                    </yAxis>
+                                </LineChart>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</GridPane>
